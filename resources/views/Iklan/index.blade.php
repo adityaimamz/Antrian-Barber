@@ -1,46 +1,44 @@
-@extends('layouts.main')
+@extends('layouts.landing')
 
-@include('partials.navbar')
-<div class="container-fluid bg-primary py-5 bg-header" style="margin-bottom: 90px;">
-    <div class="row py-5">
-        <div class="col-12 pt-lg-5 mt-lg-5 text-center">
-            <h1 class="display-3 text-white animated zoomIn">Ingin Memasang Iklan disini? </h1>
-            <p class="display-6 text-white animated zoomIn">Pasang juga iklan mu, gratis <a style="color: white;   text-decoration-line: underline;"   href={{ route('menu') }}>disini</a> </p>
+@section('content')
+<div class="slider-area2">
+    <div class="slider-height2 d-flex align-items-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="hero-cap hero-cap2 pt-70 text-center">
+                        <h1 class="display-3 text-white animated zoomIn">Ingin Memasang Iklan disini? </h1>
+                        <p class="display-6 text-white animated zoomIn">Pasang juga iklan mu, gratis <a style="color: white;   text-decoration-line: underline;"   href={{ route('menu') }}>disini</a> </p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-</div>
-<!-- Navbar End -->
-
 <!-- Blog Start -->
-<div class="container-fluid py-2 wow fadeInUp" data-wow-delay="0.1s">
-    <div class="container py-5">
-        <div class="row g-5">
-            <!-- Blog list Start -->
-            <div class="col-lg-12">
-                <div class="row g-5">
+<section class="blog_area section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 mb-5 mb-lg-0">
+                <div class="blog_left_sidebar">
                     @foreach ($iklans as $iklan)
-                        <div class="col-md-4 wow slideInUp" data-wow-delay="0.1s">
-                            <div class="blog-item bg-light rounded overflow-hidden">
-                                <div class="blog-img position-relative overflow-hidden">
-                                    <img class="img-fluid" src="{{ asset($iklan->image) }}" alt="">
-                                    {{-- <a class="position-absolute top-0 start-0 bg-primary text-white rounded-end mt-5 py-2 px-4"
-                                        href="">{{ $iklan->judul }}</a> --}}
-                                </div>
-                                <div class="p-4">
-                                    <div class="d-flex mb-3">
-                                        <small class="me-3"><i class="far fa-user text-primary me-2"></i>{{ $iklan->user->name }}</small>
-                                        <small><i
-                                                class="far fa-calendar-alt text-primary me-2"></i>{{ \Carbon\Carbon::parse($iklan->created_at)->format('D, d M Y') }}</small>
-                                    </div>
-                                    <h4 class="mb-3">{{ $iklan->title }}</h4>
-                                    <p> {{ substr($iklan->content, 0, 120) }}{{ strlen($iklan->content) > 120 ? '...' : '' }}
-                                    </p>
-                                    <a class="text-uppercase" href="iklan/detail/{{ $iklan->id }}">Read More <i
-                                            class="bi bi-arrow-right"></i></a>
-                                </div>
-                            </div>
+                    <article class="blog_item">
+                        <div class="blog_item_img">
+                            <img class="card-img rounded-0" src="{{ asset($iklan->image) }}" alt="">
+                            <a href="#" class="blog_item_date">
+                                <h3>{{ $iklan->created_at->format('d F') }}</h3>
+                            </a>
                         </div>
+                        <div class="blog_details">
+                            <a class="d-inline-block" href="iklan/detail/{{ $iklan->id }}">
+                                <h2 class="blog-head" style="color: #2d2d2d;">{{ $iklan->title }}</h2>
+                            </a>
+                            <p>{{ $iklan->content }}</p>
+                            <ul class="blog-info-link">
+                                <li><a href="iklan/detail/{{ $iklan->id }}"><i class="fa fa-user"></i>{{ $iklan->user->name }}</a></li>
+                            </ul>
+                        </div>
+                    </article>
                     @endforeach
                     <div class="col-12 wow slideInUp" data-wow-delay="0.1s">
                         <nav aria-label="Page navigation">
@@ -73,13 +71,11 @@
                     </div>
                 </div>
             </div>
-            <!-- Blog list End -->
-
-            <!-- Sidebar Start -->
-            <!-- Sidebar End -->
+            <div class="col-lg-4">
+            </div>
         </div>
     </div>
-</div>
+</section>
 <!-- Blog End -->
 
-@include('partials.footer')
+@endsection

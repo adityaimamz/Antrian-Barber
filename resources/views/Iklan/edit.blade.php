@@ -1,25 +1,28 @@
-@extends('layouts.main')
+@extends('layouts.landing')
 
-@include('partials.navbar')
-
-<div class="container p-5" style=" margin-top: 150px">
+@section('content')
+<div class="slider-area2">
+    <div class="slider-height2 d-flex align-items-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="hero-cap hero-cap2 pt-70 text-center">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container p-5" style=" margin-top: 150px margin-bottom: 150px">
     <div class="pd-ltr-20 xs-pd-20-10">
         <div>
             <div class="page-header">
                 <div class="row">
                     <div class="col-md-6 col-sm-12">
                         <div class="title">
-                            <h4>Tambah Artikel</h4>
+                            <h4>Edit Iklan</h4>
                         </div>
                         <nav aria-label="breadcrumb" role="navigation">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item">
-                                    <a href="index.html">Home</a>
-                                </li>
-                                <li class="breadcrumb-item active" aria-current="page">
-                                    Form Basic
-                                </li>
-                            </ol>
                         </nav>
                     </div>
                     <div class="col-md-6 col-sm-12 text-right">
@@ -35,7 +38,6 @@
         <div class="pd-20 card-box mb-20">
             <div class="clearfix">
                 <div class="pull-left">
-                    <h4 class="text-blue h4">Tambahkan Data Artikel</h4>
                 </div>
                 <div class="pull-right">
                 </div>
@@ -51,7 +53,7 @@
                 <div class="form-group">
                     <label for="#gambar" class="form-label">Gambar</label>
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input form-control" id="image" name="image" required/>
+                        <input type="file" class="" id="image" name="image" required/>
                     </div>
                 </div>
                 <div class="form-group">
@@ -69,4 +71,4 @@
     <!-- horizontal Basic Forms End -->
 </div>
 
-@include('partials.footer')
+@endsection

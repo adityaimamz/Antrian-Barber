@@ -42,6 +42,11 @@ class IklanController extends Controller
         if ($antrianCount < 2) {
             return redirect()->route('menu')->with('error', 'Anda harus minimal 2x melakukan pesanan/antrian untuk menambahkan iklan');
         }
+
+        $existingIklan = Iklan::where('user_id', $user->id)->first();
+        if ($existingIklan) {
+            return redirect()->back()->with('error', 'Anda hanya bisa memasang 1 iklan');
+        }
         return view('iklan.create', ['user' => $user]);
     }
 

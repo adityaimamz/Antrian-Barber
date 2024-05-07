@@ -11,10 +11,11 @@
 body {
   font-family: "Open Sans", sans-serif;
   color: #444444;
+  background-color: #d19f68;
 }
 
 a {
-  color: #1977cc;
+  color: #d19f68;
   text-decoration: none;
 }
 
@@ -154,7 +155,7 @@ h6 {
 */
 .appointment-btn {
   margin-left: 25px;
-  background: #1977cc;
+  background: #d19f68;
   color: #fff;
   border-radius: 50px;
   padding: 8px 25px;
@@ -274,6 +275,11 @@ h6 {
   opacity: 1;
   top: 100%;
   visibility: visible;
+}
+
+.btn-primary {
+  background-color: #d19f68 !important;
+  border-color: #d19f68 !important;
 }
 
 .navbar .dropdown .dropdown ul {

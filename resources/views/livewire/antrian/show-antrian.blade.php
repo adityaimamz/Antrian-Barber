@@ -31,16 +31,14 @@
                                     <td>{{ $item->tanggal_antrian }}</td>
                                     <td>
                                         <a class="btn btn-success" a href="{{ route('cetakAntrian') }}"
-                                            target="_blank"><i class="bi bi-printer"></i></a>
+                                            target="_blank">Cetak</a>
 
                                         <a class="btn btn-warning" wire:click="editAntrian({{ $item->id }})"
-                                            role="button" data-bs-toggle="modal" data-bs-target="#editAntrian"><i
-                                                class="bi bi-pencil"></i></a>
+                                            role="button" data-bs-toggle="modal" data-bs-target="#editAntrian">Edit</a>
 
                                         <button type="button" class="btn btn-danger"
                                             wire:click="deleteAntrian({{ $item->id }})" role="button"
-                                            data-bs-toggle="modal" data-bs-target="#deleteAntrian"><i
-                                                class="bi bi-trash"></i></button>
+                                            data-bs-toggle="modal" data-bs-target="#deleteAntrian">Hapus</button>
 
                                     </td>
                                 </tr>

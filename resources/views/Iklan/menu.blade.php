@@ -1,7 +1,18 @@
-@extends('layouts.main')
+@extends('layouts.landing')
 
-@include('partials.navbar')
-
+@section('content')<div class="slider-area2">
+    <div class="slider-height2 d-flex align-items-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="hero-cap hero-cap2 pt-70 text-center">
+                        <h1 class="display-3 text-white animated zoomIn">Managemen Iklan</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <section id="antrian" class="d-flex align-items-center">
     <div class="container" style="margin-top: 150px">
 
@@ -51,7 +62,7 @@
                     <a href="{{ route('iklan.create') }}" class="btn btn-primary mb-3">Tambahkan Iklan</a>
                     <p class="text-danger">Iklan anda akan di approved setiap 2x anda melakukan pesanan</p>
                 </div>
-                <div class="table-responsive">
+                <div class="table-responsive mb-5">
                     <table class="table table-bordered" id="table_id">
                         <thead>
                             <tr style="text-align: center">
@@ -93,4 +104,4 @@
         </div>
     </div>
 </section><!-- End Hero -->
-@include('partials.footer')
+@endsection
