@@ -9,9 +9,9 @@
                     aria-label="Close"></button>
             </div>
 
-            <form wire:submit.prevent="save">
+            <form wire:submit.prevent="save" class="form-contact contact_form">
                 <div class="modal-body">
-                    <div class="mb-3">
+                    <div class="mb-3 form-group">
 
                         <input type="hidden" wire:model="tanggal_antrian" class="form-control"
                             value="{{ $tanggal_antrian }}"readonly>
@@ -19,26 +19,26 @@
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-3 form-group">
 
                         <input type="hidden" wire:model="no_antrian" class="form-control" value="{{ $no_antrian }}"
                             readonly>
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-3 form-group">
                         <label>Nama Lengkap</label>
                         <input type="text" wire:model="nama" class="form-control">
                         @error('nama')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-3 form-group">
                         <label>Nomor HP</label>
                         <input type="text" wire:model="no_hp" class="form-control">
                         @error('no_hp')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-3 form-group">
                         <label>Ambil Antrian Untuk Paket</label>
                         <select class="form-select" wire:model="paket" aria-label="Default select example">
                             <option selected>pilih Paket</option>

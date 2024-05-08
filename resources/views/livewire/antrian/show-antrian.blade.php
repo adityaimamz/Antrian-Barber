@@ -3,7 +3,7 @@
 
         @if (session()->has('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert"> {{ session('success') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              
             </div>
         @endif
 
@@ -30,13 +30,13 @@
                                     <td>{{ $item->paket }}</td>
                                     <td>{{ $item->tanggal_antrian }}</td>
                                     <td>
-                                        <a class="btn btn-success" a href="{{ route('cetakAntrian') }}"
+                                        <a class="btn btn-success mb-3" a href="{{ route('cetakAntrian') }}"
                                             target="_blank">Cetak</a>
 
-                                        <a class="btn btn-warning" wire:click="editAntrian({{ $item->id }})"
+                                        <a class="btn btn-warning mb-3" wire:click="editAntrian({{ $item->id }})"
                                             role="button" data-bs-toggle="modal" data-bs-target="#editAntrian">Edit</a>
 
-                                        <button type="button" class="btn btn-danger"
+                                        <button type="button" class="btn btn-danger mb-3"
                                             wire:click="deleteAntrian({{ $item->id }})" role="button"
                                             data-bs-toggle="modal" data-bs-target="#deleteAntrian">Hapus</button>
 

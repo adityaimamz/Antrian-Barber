@@ -44,7 +44,7 @@
                 <div class="pull-right">
                 </div>
             </div>
-            <form action="{{ route('iklan.store') }}" method="POST" enctype="multipart/form-data">
+            <form class="form-contact contact_form" action="{{ route('iklan.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label for="#title" class="form-label">Judul Iklan</label>

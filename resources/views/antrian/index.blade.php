@@ -14,7 +14,7 @@
         </div>
     </div>
 </div>
-    <div style="height: 800px">
+    <div class="antrian-container"">
         <livewire:antrian.show-antrian>
     </div>
 @endsection

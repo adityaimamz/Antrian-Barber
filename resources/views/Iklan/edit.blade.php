@@ -20,7 +20,7 @@
                 <div class="row">
                     <div class="col-md-6 col-sm-12">
                         <div class="title">
-                            <h4>Edit Iklan</h4>
+                            <h1>Edit Iklan</h1>
                         </div>
                         <nav aria-label="breadcrumb" role="navigation">
                         </nav>
@@ -42,7 +42,7 @@
                 <div class="pull-right">
                 </div>
             </div>
-            <form action="{{ route('iklan.update', $iklans->id) }}" method="POST" enctype="multipart/form-data">
+            <form class="form-contact contact_form" action="{{ route('iklan.update', $iklans->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="form-group">
@@ -53,7 +53,7 @@
                 <div class="form-group">
                     <label for="#gambar" class="form-label">Gambar</label>
                     <div class="custom-file">
-                        <input type="file" class="" id="image" name="image" required/>
+                        <input type="file" class="form-control" id="image" name="image" required/>
                     </div>
                 </div>
                 <div class="form-group">

@@ -9,7 +9,7 @@
 
                     @if (session()->has('success'))
                         <div class="alert alert-success alert-dismissible fade show" role="alert"> {{ session('success') }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                          
                         </div>
                     @endif
 
@@ -21,7 +21,8 @@
                                     <thead>
                                         <tr style="text-align: center">
                                             <th scope="col">No</th>
-                                            <th scope="col">Judul`</th>
+                                            <th scope="col">Judul</th>
+                                            <th scope="col">Nama Pelanggan</th>
                                             <th scope="col">Gambar</th>
                                             <th scope="col">Isi</th>
                                             <th scope="col">Status</th>
@@ -33,6 +34,7 @@
                                             <tr style="text-align: center">
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $list->title }}</td>
+                                                <td>{{ $list->user->name }}</td>
                                                 <td>
                                                     <img src="{{ asset($list->image) }}" alt="Model Backdrop"
                                                         style="max-width: 100px; max-height: 100px;">
