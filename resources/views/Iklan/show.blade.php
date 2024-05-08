@@ -25,7 +25,7 @@
                    <img class="img-fluid" src="{{ asset($iklan->image) }}" alt="">
                 </div>
                 <div class="blog_details">
-                   <h2 style="color: #2d2d2d;">{{ $iklan->judul }}
+                   <h2 style="color: #2d2d2d;">{{ $iklan->title }}
                    </h2>
                    <ul class="blog-info-link mt-3 mb-4">
                       <li><a href="#"><i class="fa fa-user"></i>{{ $iklan->user->name }}</a></li>
