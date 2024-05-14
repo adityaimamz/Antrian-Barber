@@ -69,7 +69,7 @@
                                     <button class="btn btn-primary w-100" type="submit">Masuk</button>
                                 </div>
                                 <div class="col-12">
-                                    <p class="small mb-0">Belum Punya Akun ? <a href="/register">Buat Akun</a></p>
+                                    <p class="small mb-0">Belum Punya Akun ? Silahkan daftar ke admin kasir ditempat</p>
                                 </div>
                             </form>
 

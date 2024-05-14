@@ -9,7 +9,6 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
 
 class IklanController extends Controller
 {
@@ -37,16 +36,16 @@ class IklanController extends Controller
         }
 
         $user = User::where('id', Auth::user()->id)->first();
-        $antrianCount = Antrian::where('user_id', $user->id)->count();
+        $antrianCount = Antrian::where('user_id', $user->id)->where('is_call', 1)->count();
 
-        if ($antrianCount < 2) {
-            return redirect()->route('menu')->with('error', 'Anda harus minimal 2x melakukan pesanan/antrian untuk menambahkan iklan');
+        if ($antrianCount % 2 != 0) {
+            return redirect()->route('menu')->with('error', 'Anda harus bisa memposting iklan setiap 2x melakukan pesanan/antrian untuk menambahkan iklan');
         }
 
-        $existingIklan = Iklan::where('user_id', $user->id)->first();
-        if ($existingIklan) {
-            return redirect()->back()->with('error', 'Anda hanya bisa memasang 1 iklan');
-        }
+        // $existingIklan = Iklan::where('user_id', $user->id)->first();
+        // if ($existingIklan) {
+        //     return redirect()->back()->with('error', 'Anda hanya bisa memasang 1 iklan');
+        // }
         return view('iklan.create', ['user' => $user]);
     }
 
@@ -125,7 +124,7 @@ class IklanController extends Controller
     {
         $path = 'uploads'; // Nama folder di dalam direktori public_html
 
-        $file = $request->file('image'); 
+        $file = $request->file('image');
         $fileName = $file->getClientOriginalName();
 
         // Upload the file to the public_html/uploads directory

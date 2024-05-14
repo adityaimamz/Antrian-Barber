@@ -7,6 +7,7 @@ use App\Http\Controllers\DashboardLaporanController;
 use App\Http\Controllers\DashboardUserController;
 use App\Http\Controllers\FrontAntrianController;
 use App\Http\Controllers\IklanController;
+use App\Http\Controllers\RegiisterController;
 use App\Models\Iklan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -43,7 +44,7 @@ Route::middleware('auth')->group(function () {
     Route::group(['middleware' => 'CheckRole:admin'], function () {
         Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('redirectifauthenticated');
         Route::get('dashboard', [DashboardController::class, 'index']);
-
+        Route::resource('/register', RegiisterController::class);
         Route::get('dashboard/antrian/hairCut', [DashboardAntrianController::class, 'indexHairCut']);
         Route::get('dashboard/antrian/goodLook', [DashboardAntrianController::class, 'indexGoodLook']);
         Route::get('dashboard/antrian/goodMood', [DashboardAntrianController::class, 'indexGoodMood']);
@@ -55,6 +56,7 @@ Route::middleware('auth')->group(function () {
         Route::get('dashboard/iklan/indexApproved', [DashboardIklanController::class, 'indexApproved'])->name('indexApproved');
         Route::put('approveIklan/{id}', [DashboardIklanController::class, 'approveIklan'])->name('approveIklan');
         Route::get('dashboard/user/index', [DashboardUserController::class, 'index']);
+        Route::resource('user', DashboardUserController::class);
         Route::get('livewire/dashboard/laporan/cetakLaporan', [DashboardLaporanController::class, 'cetakLaporan'])->name('cetakLaporan');
     });
 });

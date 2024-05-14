@@ -6,6 +6,11 @@
               
             </div>
         @endif
+        @if (session()->has('error'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert"> {{ session('error') }}
+              
+            </div>
+        @endif
 
         @if ($cekAntrian > 0)
             <div class="card">
@@ -18,6 +23,7 @@
                                 <th scope="col">Nomor HP</th>
                                 <th scope="col">Paket</th>
                                 <th scope="col">Tgl Antrian</th>
+                                <th scope="col">Waktu Antrian</th>
                                 <th scope="col">Opsi</th>
                             </tr>
                         </thead>
@@ -29,6 +35,7 @@
                                     <td>{{ $item->no_hp }}</td>
                                     <td>{{ $item->paket }}</td>
                                     <td>{{ $item->tanggal_antrian }}</td>
+                                    <td>{{ $item->created_at->format('H:i:s') }}</td>
                                     <td>
                                         <a class="btn btn-success mb-3" a href="{{ route('cetakAntrian') }}"
                                             target="_blank">Cetak</a>
@@ -89,8 +96,9 @@
                                 <th scope="col">No</th>
                                 <th scope="col">No Antrian</th>
                                 <th scope="col">Nama</th>
-                                <th scope="col">Nomor HP</th>
+                                {{-- <th scope="col">Nomor HP</th> --}}
                                 <th scope="col">Paket</th>
+                                <th scope="col">Waktu antrian</th>
                                 <th scope="col">Tgl. Antrian</th>
                             </tr>
                         </thead>
@@ -100,8 +108,9 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->no_antrian }}</td>
                                     <td>{{ $item->nama }}</td>
-                                    <td>{{ $item->no_hp }}</td>
+                                    {{-- <td>{{ $item->no_hp }}</td> --}}
                                     <td>{{ $item->paket }}</td>
+                                    <td>{{ $item->created_at->format('H:i:s') }}</td>
                                     <td>{{ $item->tanggal_antrian }}</td>
                                 </tr>
                             @endforeach

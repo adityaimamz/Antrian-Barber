@@ -18,6 +18,7 @@
                                     <tr style="text-align: center">
                                         <th scope="col">No Antrian</th>
                                         <th scope="col">Nama</th>
+                                        <th scope="col">Email</th>
                                         <th scope="col">Nomor HP</th>
                                         <th scope="col">Panggil</th>
                                         {{-- <th scope="col">Hapus</th> --}}
@@ -28,6 +29,7 @@
                                         <tr style="text-align: center">
                                             <td>{{ $list->no_antrian }}</td>
                                             <td>{{ $list->nama }}</td>
+                                            <td>{{ $list->user->email }}</td>
                                             <td>{{ $list->no_hp }}</td>
                                             <td>
                                                 <a class="btn btn-success"

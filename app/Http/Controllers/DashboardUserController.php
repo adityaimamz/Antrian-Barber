@@ -21,4 +21,9 @@ class DashboardUserController extends Controller
         return view('dashboard.user.index',['user' => $user]);
     }
 
+    public function create()
+    {
+        return view('dashboard.user.create');
+    }
+
 }

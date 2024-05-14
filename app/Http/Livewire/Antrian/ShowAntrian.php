@@ -7,8 +7,6 @@ use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-
-
 class ShowAntrian extends Component
 {
     public $antrian_id, $no_antrian, $nama, $no_hp, $paket, $tanggal_antrian, $user_id, $data;
@@ -17,27 +15,35 @@ class ShowAntrian extends Component
     protected $paginationTheme = 'bootstrap';
 
     protected $rules = [
-        'no_antrian'        => 'required',
-        'nama'              => 'required',
-        'no_hp'             => 'required|numeric',
-        'paket'              => 'required',
-        'tanggal_antrian'   => 'required'
+        'no_antrian' => 'required',
+        'nama' => 'required',
+        'no_hp' => 'required|numeric',
+        'paket' => 'required',
+        'tanggal_antrian' => 'required',
     ];
-  
+
     public function updated($fields)
     {
         $this->validateOnly($fields);
     }
 
-
     public function save()
     {
-        // Mengambil data antrian terbaru berdasarkan paket yang di pilih
+        // Ambil waktu saat ini dalam timezone Asia/Jakarta
+        $now = now()->setTimezone('Asia/Jakarta');
+    
+        // Periksa apakah waktu sekarang sudah lewat jam 21:00
+        if ($now->hour >= 21) {
+            session()->flash('error', 'Tidak bisa menambah antrian setelah jam 21.00 WIB.');
+            return;
+        }
+    
+        // Mengambil data antrian terbaru berdasarkan paket yang dipilih
         $latestAntrian = Antrian::where('paket', $this->paket)
             ->where('tanggal_antrian', now()->toDateString())
             ->latest('id')
             ->first();
-
+    
         // Jika tanggal berbeda dengan hari ini, maka reset nomor antrian dari awal
         if (!$latestAntrian) {
             if ($this->paket === 'cut') {
@@ -58,20 +64,19 @@ class ShowAntrian extends Component
             $this->no_antrian = $kode_awal . $angka;
             $this->tanggal_antrian = $latestAntrian->tanggal_antrian;
         }
-
-
+    
         $validatedData = $this->validate();
         $validatedData['no_antrian'] = $this->no_antrian;
         $validatedData['tanggal_antrian'] = $this->tanggal_antrian;
         $validatedData['user_id'] = auth()->user()->id;
-
+    
         Antrian::create($validatedData);
         session()->flash('success', 'Berhasil Mengambil Antrian');
         $this->emit('update');
         $this->resetInput();
         $this->dispatchBrowserEvent('closeModal');
     }
-
+    
 
     public function resetInput()
     {
@@ -90,11 +95,11 @@ class ShowAntrian extends Component
     {
         $antrian = Antrian::find($antrian_id);
         if ($antrian) {
-            $this->antrian_id       = $antrian->id;
-            $this->no_antrian       = $antrian->no_antrian;
-            $this->nama             = $antrian->nama;
-            $this->no_hp            = $antrian->no_hp;
-            $this->paket             = $antrian->paket;
+            $this->antrian_id = $antrian->id;
+            $this->no_antrian = $antrian->no_antrian;
+            $this->nama = $antrian->nama;
+            $this->no_hp = $antrian->no_hp;
+            $this->paket = $antrian->paket;
         } else {
             return redirect()->to('/');
         }
@@ -113,7 +118,6 @@ class ShowAntrian extends Component
             $this->no_antrian = 'L1';
         }
 
-
         $latest_no_antrian = Antrian::where('paket', $this->paket)
             ->latest()
             ->first();
@@ -126,17 +130,17 @@ class ShowAntrian extends Component
         }
 
         $validatedData = $this->validate([
-            'no_antrian'    => 'required|unique:antrians',
-            'nama'          => 'required',
-            'no_hp'         => 'required',
-            'paket'          => 'required',
+            'no_antrian' => 'required|unique:antrians',
+            'nama' => 'required',
+            'no_hp' => 'required',
+            'paket' => 'required',
         ]);
 
         Antrian::where('id', $this->antrian_id)->update([
-            'no_antrian'    => $validatedData['no_antrian'],
-            'nama'          => $validatedData['nama'],
-            'no_hp'         => $validatedData['no_hp'],
-            'paket'          => $validatedData['paket'],
+            'no_antrian' => $validatedData['no_antrian'],
+            'nama' => $validatedData['nama'],
+            'no_hp' => $validatedData['no_hp'],
+            'paket' => $validatedData['paket'],
         ]);
 
         session()->flash('success', 'Berhasil Mengedit Data Antrian Anda');
@@ -161,11 +165,11 @@ class ShowAntrian extends Component
     {
         $antrian = Antrian::find($antrian_id);
         if ($antrian) {
-            $this->antrian_id       = $antrian->id;
-            $this->no_antrian       = $antrian->no_antrian;
-            $this->nama             = $antrian->nama;
-            $this->no_hp            = $antrian->no_hp;
-            $this->paket             = $antrian->paket;
+            $this->antrian_id = $antrian->id;
+            $this->no_antrian = $antrian->no_antrian;
+            $this->nama = $antrian->nama;
+            $this->no_hp = $antrian->no_hp;
+            $this->paket = $antrian->paket;
         } else {
             return redirect()->to('/');
         }
@@ -181,7 +185,7 @@ class ShowAntrian extends Component
         return view('livewire.antrian.show-antrian', [
             'antrian' => $this->paket ? Antrian::where('paket', $this->paket)->where('is_call', 0)->paginate(10) : Antrian::where('is_call', 0)->paginate(10),
             'cekAntrian' => Antrian::where('user_id', Auth::id())->count(),
-            'detailAntrian' => Antrian::where('user_id', Auth::id())->where('is_call', 0)->get()
+            'detailAntrian' => Antrian::where('user_id', Auth::id())->where('is_call', 0)->get(),
         ]);
     }
 }
