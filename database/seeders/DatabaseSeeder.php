@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
         User::create([
             'name'      => 'Admin',
             'nik'       => '1234567890123456',
+            'no_telepon' => '62473284',
             'email'     => 'admin@gmail.com',
             'password'  => bcrypt('1234'),
             'role_id'   => 1
@@ -36,6 +37,7 @@ class DatabaseSeeder extends Seeder
         User::create([
             'name'      => 'Robert Davis Chaniago',
             'nik'       => '1234567890123456',
+            'no_telepon' => '62473284',
             'email'     => 'robert@gmail.com',
             'password'  => bcrypt('1234'),
             'role_id'   => 2
@@ -44,6 +46,7 @@ class DatabaseSeeder extends Seeder
         User::create([
             'name'      => 'Mujiyono',
             'nik'       => '1234567890123456',
+            'no_telepon' => '62473284',
             'email'     => 'mujiyono@gmail.com',
             'password'  => bcrypt('1234'),
             'role_id'   => 2

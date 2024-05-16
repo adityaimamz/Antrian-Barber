@@ -31,23 +31,20 @@ class IklanController extends Controller
     public function create()
     {
         if (Auth::guest()) {
-
             return redirect()->route('login')->with('error', 'Login terlebih dahulu');
         }
-
-        $user = User::where('id', Auth::user()->id)->first();
+    
+        $user = User::find(Auth::user()->id);
         $antrianCount = Antrian::where('user_id', $user->id)->where('is_call', 1)->count();
-
-        if ($antrianCount % 2 != 0) {
-            return redirect()->route('menu')->with('error', 'Anda harus bisa memposting iklan setiap 2x melakukan pesanan/antrian untuk menambahkan iklan');
+        $iklanCount = Iklan::where('user_id', $user->id)->count();
+    
+        if ($antrianCount < 2 || $iklanCount >= floor($antrianCount / 2)) {
+            return redirect()->route('menu')->with('error', 'Anda hanya bisa menambah 1 iklan setiap 2 kali antrian.');
         }
-
-        // $existingIklan = Iklan::where('user_id', $user->id)->first();
-        // if ($existingIklan) {
-        //     return redirect()->back()->with('error', 'Anda hanya bisa memasang 1 iklan');
-        // }
+    
         return view('iklan.create', ['user' => $user]);
     }
+    
 
     /**
      * Store a newly created resource in storage.

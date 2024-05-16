@@ -23,6 +23,7 @@ class RegiisterController extends Controller
             'name' => 'required',
             'nik' => 'required',
             'role_id' => 'required',
+            'no_telepon' => 'required',
             'email' => 'required|unique:users',
             'password' => 'required|min:8',
         ]);
@@ -35,6 +36,7 @@ class RegiisterController extends Controller
             // 'name' => $request->name,
             'name' => $request->name,
             'nik' => $request->nik,
+            'no_telepon' => $request->no_telepon,
             'role_id' => $request->role_id,
             'email' => $request->email,
             'password' => Hash::make($request->password),

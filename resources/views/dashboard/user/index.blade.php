@@ -26,6 +26,7 @@
                                         <th scope="col">No</th>
                                         <th scope="col">Nama</th>
                                         <th scope="col">NIK</th>
+                                        <th scope="col">Nomor Telepon</th>
                                         <th scope="col">Email</th>
                                     </tr>
                                 </thead>
@@ -35,6 +36,7 @@
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $list->name }}</td>
                                             <td>{{ $list->nik }}</td>
+                                            <td>{{ $list->no_telepon }}</td>
                                             <td>{{ $list->email }}</td>
                                         </tr>
                                     @endforeach

@@ -37,8 +37,8 @@
                                     <td>{{ $item->tanggal_antrian }}</td>
                                     <td>{{ $item->created_at->format('H:i:s') }}</td>
                                     <td>
-                                        <a class="btn btn-success mb-3" a href="{{ route('cetakAntrian') }}"
-                                            target="_blank">Cetak</a>
+                                        {{-- <a class="btn btn-success mb-3" a href="{{ route('cetakAntrian') }}"
+                                            target="_blank">Cetak</a> --}}
 
                                         <a class="btn btn-warning mb-3" wire:click="editAntrian({{ $item->id }})"
                                             role="button" data-bs-toggle="modal" data-bs-target="#editAntrian">Edit</a>

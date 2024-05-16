@@ -14,7 +14,7 @@
                             </nav>
                         </div>
                         <div class="col-md-6 col-sm-12 text-right">
-                            <a href="{{ route('user.create') }}" class="btn btn-primary">Kembali</a>
+                            <a href="{{ route('user.index') }}" class="btn btn-primary">Kembali</a>
                         </div>
                     </div>
                 </div>
@@ -38,6 +38,15 @@
                         <label for="name" class="form-label">Nama</label>
                         <input type="text" name="name" class="form-control" id="name" required>
                         @error('name')
+                            <span class="invalid-feedback" role="alert">
+                                <p>{{ $message }}</p>
+                            </span>
+                        @enderror
+                    </div>
+                    <div class="col-12">
+                        <label for="no_telepon" class="form-label">Nomor Telepon</label>
+                        <input type="text" name="no_telepon" class="form-control" id="no_telepon" required>
+                        @error('no_telepon')
                             <span class="invalid-feedback" role="alert">
                                 <p>{{ $message }}</p>
                             </span>

@@ -211,7 +211,8 @@
 
     <!-- Template Main JS File -->
     <script src="/assetsDashboard/js/main.js"></script>
-
+    
+    
 
     @yield('script')
     @livewireScripts
